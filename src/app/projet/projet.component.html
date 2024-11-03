@@ -1,0 +1,65 @@
+<div class="container">
+    <h1 class="text-center" id="article">Articles</h1>
+    <div class="row mb-3">
+      <div class="col-6">
+        <input type="text" [(ngModel)]="chercherArticle" class="form-control" placeholder="Cherchez Un article!"><br>
+        
+          <button (click)="filterArticles()" class="btn btn-success">Confirmer la recherche</button>
+    
+      </div>
+      <div >
+        <br><button (click)="ajout()" class="btn btn-primary">Ajouter Un Article</button>
+      </div>
+    </div>
+  
+    <div *ngIf="isFormVisible">
+      <div class="row mb-3">
+        <div class="col-3">
+          Title:<input type="text" [(ngModel)]="article.title" class="form-control">
+        </div>
+        <div class="col-3">
+          Date: <input type="date" [(ngModel)]="article.date" class="form-control">
+        </div>
+        <div class="col-3">
+          Description: <input type="text" [(ngModel)]="article.description" class="form-control">
+        </div>
+        <div class="col-3">
+          Image URL:<input type="text" [(ngModel)]="article.image" class="form-control">
+        </div>
+      </div>
+      <button (click)="create()" class="btn btn-success">Create</button>
+    </div>
+  
+    <div class="row">
+      <div class="card p-1" *ngFor="let i of articles">
+        <div class="card-img">
+          <img [src]="i.image" alt="">
+          <div class="card-body">
+            <h2>Title: {{i.title}}</h2>
+            <p>Score: {{i.score}}</p>
+            <p>Description: {{i.description}}</p>
+            <p>Date: {{i.date}}</p>
+            <button (click)="vote(i, 'up')" class="btn btn-success">J'aime</button>
+            <button (click)="vote(i, 'down')" class="btn btn-danger">J'aime pas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="ta.length > 0">
+      <h3>L'article que vous avez cherché:</h3> 
+      <div class="card p-1" *ngFor="let i of ta">
+        <div class="card-img">
+          <img [src]="i.image" alt="">
+          <div class="card-body">
+            <h2>Title: {{i.title}}</h2>
+            <p>Score: {{i.score}}</p>
+            <p>Description: {{i.description}}</p>
+            <p>Date: {{i.date}}</p>
+            <button (click)="vote(i, 'up')" class="btn btn-success">J'aime</button>
+            <button (click)="vote(i, 'down')" class="btn btn-danger">J'aime pas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
